@@ -1,1 +1,1 @@
-# G221210386WebProjesi
+#Web Teknolojileri Projesi - G221210386
