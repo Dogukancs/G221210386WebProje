@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     iletisimForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      
       const ad = iletisimForm.querySelector("#ad");
       const email = iletisimForm.querySelector("#email");
       const telefon = iletisimForm.querySelector("#telefon");
@@ -12,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const telPattern = /^\d*$/;
 
-      
       let valid = true;
 
       if (!ad.value.trim()) {
@@ -44,50 +42,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   
-  const loginForm = document.getElementById("loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    const kullaniciAdi = loginForm.querySelector("#kullaniciAdi");
+    const sifre = loginForm.querySelector("#sifre");
+    let valid = true;
 
-      const kullaniciAdi = loginForm.querySelector("#kullaniciAdi");
-      const sifre = loginForm.querySelector("#sifre");
-      const loginMesaj = document.getElementById("loginMesaj");
+    if (!kullaniciAdi.value.trim() || !kullaniciAdi.checkValidity()) {
+      kullaniciAdi.classList.add("is-invalid");
+      valid = false;
+    } else {
+      kullaniciAdi.classList.remove("is-invalid");
+    }
 
-      const dogruKullanici = "g221210386@sakarya.edu.tr";
-      const dogruSifre = "g221210386";
+    if (!sifre.value.trim()) {
+      sifre.classList.add("is-invalid");
+      valid = false;
+    } else {
+      sifre.classList.remove("is-invalid");
+    }
 
-      let valid = true;
-
-      if (!kullaniciAdi.value.trim() || !kullaniciAdi.checkValidity()) {
-        kullaniciAdi.classList.add("is-invalid");
-        valid = false;
-      } else {
-        kullaniciAdi.classList.remove("is-invalid");
-      }
-
-      if (!sifre.value.trim()) {
-        sifre.classList.add("is-invalid");
-        valid = false;
-      } else {
-        sifre.classList.remove("is-invalid");
-      }
-
-      if (!valid) {
-        loginMesaj.textContent = "";
-        return;
-      }
-
-      if (
-        kullaniciAdi.value === dogruKullanici &&
-        sifre.value === dogruSifre
-      ) {
-        loginMesaj.textContent = "Giriş başarılı! Hoş geldiniz.";
-        loginMesaj.style.color = "green";
-        loginForm.reset();
-      } else {
-        loginMesaj.textContent = "Kullanıcı adı veya şifre yanlış.";
-        loginMesaj.style.color = "red";
-      }
-    });
-  }
+    if (!valid) {
+      e.preventDefault(); 
+    }
+  });
+ } 
 });
