@@ -16,3 +16,39 @@ ul {
 footer {
     font-size: 0.9rem;
 }
+
+body {
+  background-color: #f8f9fa;
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+}
+
+.invalid-feedback {
+  display: none;
+  color: red;
+  font-size: 0.875em;
+}
+
+input:invalid, textarea:invalid {
+  border-color: red;
+}
+
+input:invalid + .invalid-feedback,
+textarea:invalid + .invalid-feedback {
+  display: block;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #0d6efd !important;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.btn {
+  min-width: 100px;
+}

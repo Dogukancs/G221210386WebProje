@@ -1,115 +1,71 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>İletişim</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    .hata { color: red; font-size: 0.9em; }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">Doğukan S. Sevindik</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
-        <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
-        <li class="nav-item"><a class="nav-link" href="sehir.html">Şehrim</a></li>
-        <li class="nav-item"><a class="nav-link" href="takim.html">Takımımız</a></li>
-        <li class="nav-item"><a class="nav-link" href="ilgiAlanlarim.html">İlgi Alanlarım</a></li>
-        <li class="nav-item"><a class="nav-link active" href="iletisim.html">İletişim</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Giriş</a></li>
-      </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Doğukan S. Sevindik</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
+          <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
+          <li class="nav-item"><a class="nav-link" href="sehir.html">Şehir</a></li>
+          <li class="nav-item"><a class="nav-link" href="takim.html">Takım</a></li>
+          <li class="nav-item"><a class="nav-link" href="ilgiAlanlarim.html">İlgi Alanlarım</a></li>
+          <li class="nav-item"><a class="nav-link active" href="iletisim.html">İletişim</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Giriş</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-<main class="container my-5" id="vueApp">
-  <h2 class="mb-4 text-center">İletişim Formu</h2>
-  <form name="iletisimForm" action="form-sonuc.html" method="POST">
-    <div class="mb-3">
-      <label for="ad">Ad Soyad:</label>
-      <input type="text" class="form-control" id="ad" v-model="ad">
-      <div class="hata" v-if="adHata">Ad boş olamaz</div>
-    </div>
+  </nav>
 
-    <div class="mb-3">
-      <label for="email">E-posta:</label>
-      <input type="text" class="form-control" id="email" v-model="email">
-      <div class="hata" v-if="emailHata">Geçerli bir e-posta giriniz</div>
-    </div>
+  <main class="container my-5">
+    <h2>İletişim Formu</h2>
+    <form id="iletisimForm" novalidate>
+      <div class="mb-3">
+        <label for="ad" class="form-label">Ad Soyad</label>
+        <input type="text" id="ad" class="form-control" required />
+        <div class="invalid-feedback">Ad Soyad boş bırakılamaz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-posta</label>
+        <input type="email" id="email" class="form-control" required />
+        <div class="invalid-feedback">Geçerli bir e-posta giriniz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="telefon" class="form-label">Telefon</label>
+        <input type="text" id="telefon" class="form-control" pattern="^\d*$" />
+        <div class="invalid-feedback">Telefon sadece rakamlardan oluşmalı.</div>
+      </div>
+      <div class="mb-3">
+        <label for="konu" class="form-label">Konu</label>
+        <input type="text" id="konu" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="mesaj" class="form-label">Mesaj</label>
+        <textarea id="mesaj" class="form-control" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Gönder</button>
+    </form>
+  </main>
 
-    <div class="mb-3">
-      <label for="telefon">Telefon:</label>
-      <input type="text" class="form-control" id="telefon" v-model="telefon">
-      <div class="hata" v-if="telefonHata">Telefon sadece rakam içermeli</div>
-    </div>
-
-    <div class="mb-3">
-      <label for="konu">Konu:</label>
-      <input type="text" class="form-control" id="konu" v-model="konu">
-    </div>
-
-    <div class="mb-3">
-      <label for="mesaj">Mesaj:</label>
-      <textarea class="form-control" id="mesaj" rows="5" v-model="mesaj"></textarea>
-    </div>
-
-    <button type="button" class="btn btn-primary" onclick="jsKontrol()">JS Kontrol</button>
-    <button type="button" class="btn btn-success" @click="vueKontrol">Vue.js Kontrol</button>
-    <button type="reset" class="btn btn-secondary">Temizle</button>
-    <button type="submit" class="btn btn-dark">Gönder</button>
-  </form>
-</main>
-<script>function jsKontrol() {
-  const ad = document.getElementById("ad").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const telefon = document.getElementById("telefon").value.trim();
-  const emailRegex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-  const telefonRegex = /^[0-9]+$/;
-
-  if (ad === "" || !emailRegex.test(email) || !telefonRegex.test(telefon)) {
-    alert("Lütfen geçerli bilgiler giriniz (JS Kontrol)");
-  } else {
-    alert("Tüm bilgiler geçerli (JS Kontrol)");
-  }
-}
-</script>
-
-<script>
-  new Vue({
-    el: "#vueApp",
-    data: {
-      ad: "",
-      email: "",
-      telefon: "",
-      konu: "",
-      mesaj: ""
-    },
-    computed: {
-      adHata() { return this.ad.trim() === ""; },
-      emailHata() { return !/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(this.email); },
-      telefonHata() { return !/^[0-9]+$/.test(this.telefon); }
-    },
-    methods: {
-      vueKontrol() {
-        if (this.adHata || this.emailHata || this.telefonHata) {
-          alert("Lütfen bilgileri düzgün girin (Vue.js Kontrol)");
-        } else {
-          alert("Tüm bilgiler geçerli (Vue.js Kontrol)");
-        }
-      }
-    }
-  });
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
+<footer class="bg-dark text-white text-center py-3">
+  <p>© 2025 Doğukan Samet Sevindik</p>
+</footer>
+
 </html>
