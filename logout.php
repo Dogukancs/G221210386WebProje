@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: login.html?msg=logout");
+header("Location: login.php?msg=logout");
 exit;
 ?>
