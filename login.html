@@ -3,50 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Giriş</title>
+  <title>Giriş Yap</title>
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">ANASAYFA</a>
+      <a class="navbar-brand" href="login.html">GİRİŞ</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Hakkımda</a></li>
-          <li class="nav-item"><a class="nav-link" href="cv.html">Özgeçmiş</a></li>
-          <li class="nav-item"><a class="nav-link" href="sehir.html">Şehir</a></li>
-          <li class="nav-item"><a class="nav-link" href="takim.html">Takım</a></li>
-          <li class="nav-item"><a class="nav-link" href="ilgiAlanlarim.html">İlgi Alanlarım</a></li>
-          <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
-          <li class="nav-item"><a class="nav-link active" href="login.html">Giriş</a></li>
-        </ul>
-      </div>
-    </div>
   </nav>
 
-  <main class="container my-5">
-    <h2>Kullanıcı Girişi</h2>
-    <form id="loginForm" action="kontrol.php" method="POST" novalidate></form>
-    <div class="mb-3">
-    <label for="kullaniciAdi" class="form-label">Kullanıcı Adı (E-posta)</label>
-    <input type="email" name="kullaniciAdi" id="kullaniciAdi" class="form-control" required />
-    <div class="invalid-feedback">Geçerli bir kullanıcı adı (e-posta) giriniz.</div>
-  </div>
-    <div class="mb-3">
-    <label for="sifre" class="form-label">Şifre</label>
-    <input type="password" name="sifre" id="sifre" class="form-control" required />
-    <div class="invalid-feedback">Şifre boş bırakılamaz.</div>
-  </div>
-  <button type="submit" class="btn btn-primary">Giriş Yap</button>
-</form>
-  </main>
-
+    <div class="container mt-4">
+      <h1>Giriş Yap</h1>
+      <?php
+       if (isset($_GET['msg']) && $_GET['msg'] == 'logout') 
+       {
+       echo "<p style='color:green;'>Başarıyla çıkış yapıldı.</p>";
+       } 
+       elseif (isset($_GET['msg']) && $_GET['msg'] == 'hata') {
+      echo "<p style='color:red;'>Kullanıcı adı veya şifre hatalı.</p>";
+      }
+      ?>
+  <form action="kontrol.php" method="post">
+    <label for="email">Kullanıcı Adı:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password">Şifre:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <button type="submit">Giriş Yap</button>
+  </form>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>
